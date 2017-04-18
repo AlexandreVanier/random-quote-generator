@@ -3,6 +3,7 @@
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
 var printedQuotes = [];
+var numberOfQuotes = quotes.length;
 
 function getRandomNumber(max) {
 	
@@ -13,7 +14,6 @@ function getRandomNumber(max) {
 
 function getRandomQuote() {
 
-	var numberOfQuotes = quotes.length;
 	var quoteId = getRandomNumber(numberOfQuotes);
 	var selectedQuote = quotes[quoteId];
 	
@@ -41,9 +41,21 @@ function changeBackgroundColor(color) {
 function printQuote() {
 
 	var htmlString = '';
-	var quote = getRandomQuote();
-
+	var quote;
 	var randomColor = getRandomRGBColor();
+
+	if( printedQuotes.length === numberOfQuotes ) {
+		printedQuotes = [];
+	}
+
+	do {
+
+		quote = getRandomQuote();		
+	
+	} while(printedQuotes.indexOf(quote) > -1)
+
+	printedQuotes.push(quote);
+	console.log(quote.quote);
 
 	changeBackgroundColor(randomColor);
 

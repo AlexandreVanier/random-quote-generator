@@ -1,3 +1,4 @@
+// Data Structure for my quotes array of objects
 var quotes = [
 	{
 		quote: 'In a world that\'s changing really quickly, the only strategy that is guaranteed to fail is not taking risks.',
