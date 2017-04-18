@@ -4,7 +4,7 @@ var quotes = [
 		quote: 'In a world that\'s changing really quickly, the only strategy that is guaranteed to fail is not taking risks.',
 		source: 'Mark Zuckerberg',
 		citation: 'interview at Y Combinator\'s Startup School ',
-		year: 2011,
+		date: 2011,
 		tags: ['tech', 'inspiration', 'business']
 	},
 	{
@@ -22,13 +22,13 @@ var quotes = [
 		quote: 'Your time is limited, so don’t waste it living someone else’s life.',
 		source: 'Steve Jobs',
 		citation: 'Stanford Commencement Address',
-		year: 2005,
+		date: 2005,
 		tags: ['philosophy', 'inspiration']
 	},
 	{
 		quote: 'There is only one way to avoid criticism: do nothing, say nothing, and be nothing.',
 		source: 'Aristotle',
-		tags: ['philosophy', '']
+		tags: ['philosophy', 'inspiration']
 	},
 	{
 		quote: 'Fall seven times and stand up eight.',

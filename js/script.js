@@ -6,6 +6,8 @@ document.getElementById('loadQuote').addEventListener("click", printQuote, false
 var printedQuotes = []; 				// Array to store the printed quotes
 var numberOfQuotes = quotes.length; 	// Store the number of quotes objects in the quotes array
 
+var intervalId = setInterval(printQuote, 30000);
+
 // Generic function to return a random number from 0 to a maximum
 function getRandomNumber(max) {
 	var min = 0;
@@ -14,9 +16,21 @@ function getRandomNumber(max) {
 
 // function returning a random quote within the quotes array of objects
 function getRandomQuote() {
-	var quoteId = getRandomNumber(numberOfQuotes); 	// Get a random array position from 0 to the number of quotes
-	var selectedQuote = quotes[quoteId];			// Store random quote object 	
+	var quoteId; 	
+	var selectedQuote;				
 	
+	// Look if all the quotes have been printed
+	if( printedQuotes.length === numberOfQuotes ) {
+		printedQuotes = []; // Reset the printed Quote array once they have all been printed at least once
+	}
+
+	do {
+		quoteId = getRandomNumber(numberOfQuotes); 	// Get a random array position from 0 to the number of quotes
+		selectedQuote = quotes[quoteId]; 			// Store random quote object
+	} while(printedQuotes.indexOf(selectedQuote) > -1) // generate a random quote until the quote hasn't been shown yet
+
+	printedQuotes.push(selectedQuote); // Add the quote to the printedQuotes Array to remember the printed ones
+
 	return selectedQuote;				
 }
 
@@ -49,10 +63,22 @@ function buildQuoteHtmlString(quote) {
 		htmlString += '<span class="citation">' + quote.citation + '</span>';
 
 	// Look if the quote object has a year key, if not the html won't be printed
-	if(("year" in quote))
-		htmlString += '<span class="year">' + quote.year + '</span>';
+	if(("date" in quote))
+		htmlString += '<span class="year">' + quote.date + '</span>';
 	
 	htmlString += '</p>';
+
+	// Look if the quote object has a tag key and print the array if it exist
+	if(("tags" in quote)) {
+		htmlString += '<div class="tags">';
+		
+		// Loop through all the tags and display them in a tag div
+		for(var i = 0; i < quote.tags.length; i += 1) {
+			htmlString += '<div class="tag">' + quote.tags[i] + '</div>';	
+		}
+
+		htmlString += '</div>';
+	}
 
 	return htmlString;
 }
@@ -61,19 +87,8 @@ function buildQuoteHtmlString(quote) {
 function printQuote() {
 
 	var output = '';
-	var quote;
+	var quote = getRandomQuote();
 	var randomColor = getRandomRGBColor();
-
-	// Look if all the quotes have been printed
-	if( printedQuotes.length === numberOfQuotes ) {
-		printedQuotes = []; // Reset the printed Quote array once they have all been printed at least once
-	}
-	
-	do {
-		quote = getRandomQuote(); // generate a random quote until the quote hasn't been shown yet
-	} while(printedQuotes.indexOf(quote) > -1)
-
-	printedQuotes.push(quote); // Add the quote to the printedQuotes Array to remember the printed ones
 
 	console.log(quote.quote); // Log the quote to the console in order to see the complete print sequence
 
