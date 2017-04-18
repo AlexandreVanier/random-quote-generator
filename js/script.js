@@ -2,7 +2,9 @@
 // when user clicks anywhere on the button, the "printQuote" function is called
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
-function getRandomId(max) {
+var printedQuotes = [];
+
+function getRandomNumber(max) {
 	
 	var min = 0;
 	return Math.floor(Math.random() * (max - min)) + min;
@@ -12,17 +14,38 @@ function getRandomId(max) {
 function getRandomQuote() {
 
 	var numberOfQuotes = quotes.length;
-	var quoteId = getRandomId(numberOfQuotes);
+	var quoteId = getRandomNumber(numberOfQuotes);
 	var selectedQuote = quotes[quoteId];
 	
 	return selectedQuote;
 
 }
 
-function printQuote(){
+function getRandomRGBColor() {
+
+	var red 	= getRandomNumber(255);
+	var green 	= getRandomNumber(255);
+	var blue 	= getRandomNumber(255);
+	
+	var rgbString = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+	
+	return rgbString;
+}
+
+function changeBackgroundColor(color) {
+
+	document.body.style.background = color;
+
+}
+
+function printQuote() {
 
 	var htmlString = '';
 	var quote = getRandomQuote();
+
+	var randomColor = getRandomRGBColor();
+
+	changeBackgroundColor(randomColor);
 
 	htmlString += '<p class="quote">' + quote.quote + '</p>';
 	htmlString += '<p class="source">' + quote.source;
