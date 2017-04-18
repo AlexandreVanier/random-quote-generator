@@ -3,10 +3,10 @@
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
 // Declaration of global variables
-var printedQuotes = []; 				// Array to store the printed quotes
-var numberOfQuotes = quotes.length; 	// Store the number of quotes objects in the quotes array
+var printedQuotes = []; 							// Array to store the printed quotes
+var numberOfQuotes = quotes.length; 				// Store the number of quotes objects in the quotes array
 
-var intervalId = setInterval(printQuote, 30000);
+var intervalId = setInterval(printQuote, 30000); 	// Change the displayed quote every 30 seconds
 
 // Generic function to return a random number from 0 to a maximum
 function getRandomNumber(max) {
@@ -25,11 +25,11 @@ function getRandomQuote() {
 	}
 
 	do {
-		quoteId = getRandomNumber(numberOfQuotes); 	// Get a random array position from 0 to the number of quotes
-		selectedQuote = quotes[quoteId]; 			// Store random quote object
-	} while(printedQuotes.indexOf(selectedQuote) > -1) // generate a random quote until the quote hasn't been shown yet
+		quoteId = getRandomNumber(numberOfQuotes); 		// Get a random array position from 0 to the number of quotes
+		selectedQuote = quotes[quoteId]; 				// Store random quote object
+	} while(printedQuotes.indexOf(selectedQuote) > -1) 	// generate a random quote until the quote hasn't been shown yet
 
-	printedQuotes.push(selectedQuote); // Add the quote to the printedQuotes Array to remember the printed ones
+	printedQuotes.push(selectedQuote); 					// Add the quote to the printedQuotes Array to remember the printed ones
 
 	return selectedQuote;				
 }
@@ -41,7 +41,7 @@ function getRandomRGBColor() {
 	var green 	= getRandomNumber(255);
 	var blue 	= getRandomNumber(255);
 	
-	var rgbString = 'rgb(' + red + ', ' + green + ', ' + blue + ')';	// build the rgb string
+	var rgbString = 'rgb(' + red + ', ' + green + ', ' + blue + ')'; // build the rgb string
 	
 	return rgbString;
 }
@@ -63,12 +63,13 @@ function buildQuoteHtmlString(quote) {
 		htmlString += '<span class="citation">' + quote.citation + '</span>';
 
 	// Look if the quote object has a year key, if not the html won't be printed
-	if(("date" in quote))
-		htmlString += '<span class="year">' + quote.date + '</span>';
+	if(("year" in quote))
+		htmlString += '<span class="year">' + quote.year + '</span>';
 	
 	htmlString += '</p>';
 
-	// Look if the quote object has a tag key and print the array if it exist
+	// Little Extra feature to display the additional category tags
+	// look if the quote object has a tag key and print the array if it exist
 	if(("tags" in quote)) {
 		htmlString += '<div class="tags">';
 		
@@ -90,11 +91,11 @@ function printQuote() {
 	var quote = getRandomQuote();
 	var randomColor = getRandomRGBColor();
 
-	console.log(quote.quote); // Log the quote to the console in order to see the complete print sequence
+	console.log(quote.quote); 				// Log the quote to the console in order to see the complete print sequence
 
-	changeBackgroundColor(randomColor); // Change the background color with every new quote
+	changeBackgroundColor(randomColor); 	// Change the background color with every new quote
 
-	output = buildQuoteHtmlString(quote); // Build the html code to be output
+	output = buildQuoteHtmlString(quote); 	// Build the html code to be printed
 
 	document.getElementById('quote-box').innerHTML = output; // output the final html to the selected div on the page
 

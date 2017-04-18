@@ -4,7 +4,7 @@ var quotes = [
 		quote: 'In a world that\'s changing really quickly, the only strategy that is guaranteed to fail is not taking risks.',
 		source: 'Mark Zuckerberg',
 		citation: 'interview at Y Combinator\'s Startup School ',
-		date: 2011,
+		year: 2011,
 		tags: ['tech', 'inspiration', 'business']
 	},
 	{
@@ -22,7 +22,7 @@ var quotes = [
 		quote: 'Your time is limited, so don’t waste it living someone else’s life.',
 		source: 'Steve Jobs',
 		citation: 'Stanford Commencement Address',
-		date: 2005,
+		year: 2005,
 		tags: ['philosophy', 'inspiration']
 	},
 	{
