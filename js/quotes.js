@@ -39,5 +39,5 @@ var quotes = [
 		quote: 'In order to succeed, your desire for success should be greater than your fear of failure.',
 		source: 'Bill Cosby',
 		tags: ['inspiration', 'business', 'entrepreneur']
-	},
+	}
 ];
